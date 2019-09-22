@@ -4,6 +4,10 @@
 #include "Eigen/Dense"
 #include "measurement_package.h"
 
+#include<vector>
+#include<iostream>
+#include<fstream>
+
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
@@ -52,6 +56,8 @@ class UKF {
   void PredictMeanAndCovariance();
 
   void PredictRadarMeasurement(VectorXd* z_out, MatrixXd* S_out, MatrixXd& Zsig);
+
+  void PredictLaserMeasurement(VectorXd* z_out, MatrixXd* S_out, MatrixXd& Zsig);
 
   void UpdateState(MatrixXd& Zsig, VectorXd& z_pred, MatrixXd& S, VectorXd& z);
 
@@ -109,6 +115,7 @@ class UKF {
 
   // Sigma point spreading parameter
   double lambda_;
+
 };
 
 #endif  // UKF_H
